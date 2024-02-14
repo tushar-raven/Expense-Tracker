@@ -5,7 +5,8 @@ import { Input } from "./input";
 const Income = () => {
   const [income, setIncome] = useState("");
   const [expense, setExpense] = useState("");
-  const [total, setTotal] = useState(0);
+  const [incomeArray, setIncomeArray] = useState([]);
+  const [expenseArray, setExpenseArray] = useState([]);
 
   const handleIncomeInput = (e) => {
     setIncome(parseInt(e.target.value));
@@ -15,14 +16,28 @@ const Income = () => {
     setExpense(parseInt(e.target.value));
   };
 
+  const calculateTotal = () => {
+    const incomeTotal = incomeArray.reduce((acc, item) => acc + item.value, 0);
+    const expenseTotal = expenseArray.reduce(
+      (acc, item) => acc + item.value,
+      0
+    );
+    return incomeTotal - expenseTotal;
+  };
+
   const handleTotal = (calc) => (e) => {
     e.preventDefault();
     if (calc === "add") {
-      setTotal((prevTotal) => prevTotal + income);
+      const incomeObject = { value: income, tag: "salary" };
+      setIncomeArray((prevArray) => [...prevArray, incomeObject]);
+
+      setIncome("");
     } else {
-      setTotal((prevTotal) => prevTotal - expense);
+      const expenseObject = { value: expense, tag: "salary" };
+      setExpenseArray((prevArray) => [...prevArray, expenseObject]);
+
+      setExpense("");
     }
-    setIncome("");
   };
 
   return (
@@ -47,7 +62,21 @@ const Income = () => {
         <Button buttonName="Subtract" />
       </form>
 
-      <div>{total}</div>
+      <div>{calculateTotal()}</div>
+      <div>
+        {incomeArray.map((item, index) => (
+          <div key={index}>
+            {item.value} - {item.tag}
+          </div>
+        ))}
+      </div>
+      <div>
+        {expenseArray.map((item, index) => (
+          <div key={index}>
+            {item.value} - {item.tag}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

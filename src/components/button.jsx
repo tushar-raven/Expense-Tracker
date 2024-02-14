@@ -5,7 +5,6 @@ const Button = ({ buttonName }) => {
 };
 
 Button.propTypes = {
-  setTotal: PropTypes.func.isRequired,
   buttonName: PropTypes.string.isRequired,
 };
 

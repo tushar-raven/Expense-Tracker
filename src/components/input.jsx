@@ -15,7 +15,7 @@ const Input = ({ type, placeholder, entry, handleFunc }) => {
 Input.propTypes = {
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  entry: PropTypes.string.isRequired,
+  entry: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   handleFunc: PropTypes.func.isRequired,
 };
 
