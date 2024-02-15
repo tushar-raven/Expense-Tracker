@@ -7,6 +7,11 @@ const Income = () => {
   const [expense, setExpense] = useState("");
   const [incomeArray, setIncomeArray] = useState([]);
   const [expenseArray, setExpenseArray] = useState([]);
+  const [tag, setTag] = useState("");
+
+  const handleTag = (e) => {
+    setTag(e.target.value);
+  };
 
   const tagArray = ["rent", "food", "entertainment"];
 
@@ -30,7 +35,7 @@ const Income = () => {
   const handleTotal = (calc) => (e) => {
     e.preventDefault();
     if (calc === "add") {
-      const incomeObject = { value: income, tag: "salary" };
+      const incomeObject = { value: income, tag: tag };
       setIncomeArray((prevArray) => [...prevArray, incomeObject]);
 
       setIncome("");
@@ -51,9 +56,12 @@ const Income = () => {
           entry={income}
           handleFunc={handleIncomeInput}
         />
-        <select>
+        <select onChange={handleTag} required>
+          <option value="">Select Tag</option>
           {tagArray.map((item, index) => (
-            <option key={index}>{item}</option>
+            <option key={index} value={item}>
+              {item}
+            </option>
           ))}
         </select>
         <Button buttonName="Add" />

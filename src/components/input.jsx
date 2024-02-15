@@ -8,6 +8,7 @@ const Input = ({ type, placeholder, entry, handleFunc }) => {
       value={entry}
       min="1"
       onChange={handleFunc}
+      required
     />
   );
 };
