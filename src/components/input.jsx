@@ -6,7 +6,7 @@ const Input = ({ type, placeholder, entry, handleFunc }) => {
       type={type}
       placeholder={placeholder}
       value={entry}
-      min="0"
+      min="1"
       onChange={handleFunc}
     />
   );

@@ -8,6 +8,8 @@ const Income = () => {
   const [incomeArray, setIncomeArray] = useState([]);
   const [expenseArray, setExpenseArray] = useState([]);
 
+  const tagArray = ["rent", "food", "entertainment"];
+
   const handleIncomeInput = (e) => {
     setIncome(parseInt(e.target.value));
   };
@@ -49,6 +51,11 @@ const Income = () => {
           entry={income}
           handleFunc={handleIncomeInput}
         />
+        <select>
+          {tagArray.map((item, index) => (
+            <option key={index}>{item}</option>
+          ))}
+        </select>
         <Button buttonName="Add" />
       </form>
 
